@@ -115,5 +115,49 @@ namespace testJsonDynamic.storage
             lstOf100.Add(list);
             return lstOf100;
         }
+
+        internal dynamic getByRowKey(string nombreTabla, string rowkey)
+        {
+            try
+            {
+                var client = storageAccount.CreateCloudTableClient();
+
+                client.DefaultRequestOptions = new TableRequestOptions()
+                {
+                    PayloadFormat = TablePayloadFormat.JsonNoMetadata
+                };
+
+                var table = client.GetTableReference(nombreTabla);
+
+                TableQuery query = new TableQuery().Where(TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, rowkey));
+                var result = table.ExecuteQuery(query);
+                dynamic resultado = result.ToList();
+
+                List<object> lst = new List<object>();
+
+                foreach (var item in resultado)
+                {
+                    var elemento = new Expando();
+                    elemento["PartitionKey"] = item.PartitionKey;
+                    elemento["RowKey"] = item.RowKey;
+
+                    foreach (var itemB in item.Properties)
+                    {
+                        var propiedad = ConvertToEntityProperty(itemB.Key, itemB.Value);
+                        elemento[itemB.Key] = propiedad;
+                    }
+
+                    lst.Add(elemento.Properties);
+                }
+                
+                return lst;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }

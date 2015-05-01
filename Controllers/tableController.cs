@@ -37,6 +37,12 @@ namespace testJsonDynamic.Controllers
             return _azure.getASingle(nombreTabla, partitionKey, rowkey);
         }
 
+        //Los dos ultimos parametros no se usan se ponen para que se pueda genrar el web api
+        public dynamic Get(string nombreTabla, string rowkey, string modo, string modo2)
+        {
+            return _azure.getByRowKey(nombreTabla, rowkey);
+        }
+
         // POST api/<controller>
         public async Task<dynamic> Post()
         {
