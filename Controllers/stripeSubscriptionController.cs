@@ -33,7 +33,7 @@ namespace testJsonDynamic.Controllers
                 var entidad = System.Web.Helpers.Json.Decode(value);
 
                 var subscriptionService = new StripeSubscriptionService("sk_test_CBdkobSnlUEOyOjsLQ8fpqof");
-               var result = subscriptionService.Cancel(entidad.customeId, entidad.subscriptionId);
+               var result = subscriptionService.Cancel(entidad.customerId, entidad.subscriptionId);
                return result;
             }
             catch (Exception ex)
