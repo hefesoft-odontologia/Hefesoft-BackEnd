@@ -278,9 +278,11 @@
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\SignalRController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
+    <Compile Include="Controllers\StripeCardsController.cs" />
     <Compile Include="Controllers\stripeController.cs" />
     <Compile Include="Controllers\stripeCustomerController.cs" />
     <Compile Include="Controllers\stripePlanController.cs" />
+    <Compile Include="Controllers\stripeSubscriptionController.cs" />
     <Compile Include="Controllers\tableController.cs" />
     <Compile Include="Controllers\tableGroupController.cs" />
     <Compile Include="Controllers\validateUser.cs" />
