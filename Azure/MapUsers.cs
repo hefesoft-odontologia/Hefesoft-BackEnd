@@ -14,10 +14,10 @@ namespace testJsonDynamic.Azure
             public ConnectionEntity() { }
 
             public ConnectionEntity(string userName, string connectionID)
-            {
+            {                
                 this.PartitionKey = userName;
                 this.RowKey = connectionID;
-            }
+            }            
         }
     }
 }

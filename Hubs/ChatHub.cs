@@ -34,14 +34,23 @@ namespace testJsonDynamic
             {
                 name = "no indicado";
             }
-
+            
             testJsonDynamic.Estaticas.Table_Storage.obtenerTableStorage().insert(name, this.Context);
+
+            try {
+                testJsonDynamic.Estaticas.Table_Storage.obtenerTableStorage().borrarAntiguos(name);
+            }
+            catch(Exception)
+            {
+
+            }
+
             return base.OnConnected();
         }
 
         public override Task OnDisconnected(bool stopCalled)
         {
-            var name = Context.User.Identity.Name;
+            var name = Context.QueryString.Get("usuario");
 
             if (string.IsNullOrEmpty(name))
             {

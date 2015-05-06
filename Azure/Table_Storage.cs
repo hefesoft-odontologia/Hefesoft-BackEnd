@@ -48,6 +48,40 @@ namespace testJsonDynamic.Azure
 
             return result;
         }
+        
+        /// <summary>
+        ///El objetivo es eliminar todos los registros de esta tabla que
+        ///van quedandose vivos para eso se hace una validacion por fecha
+        /// </summary>
+        /// <param name="name"></param>
+        internal void borrarAntiguos(string name)
+        {   
+            var result = new ConnectionResult();
+            var table = GetConnectionTable();
+
+            var query = new TableQuery<ConnectionEntity>()
+                .Where(TableQuery.GenerateFilterCondition(
+                "PartitionKey",
+                QueryComparisons.Equal,
+                name));
+
+            var queryResult = table.ExecuteQuery(query).ToList();
+            if (queryResult.Any())
+            {
+                foreach (var entity in queryResult)
+                {
+                    var anioRow = entity.Timestamp.Year;
+                    var mesRow = entity.Timestamp.Month;
+                    var diaRow = entity.Timestamp.Day;
+
+
+                    if (anioRow <= DateTime.Now.Year && mesRow <= DateTime.Now.Month && diaRow < DateTime.Now.Day)
+                    {
+                        delete(entity.PartitionKey, entity.RowKey);
+                    }
+                }
+            }            
+        }
 
         public void insert(dynamic name, dynamic Context)
         {
@@ -76,6 +110,21 @@ namespace testJsonDynamic.Azure
             }
         }
 
+        public void delete(string PartitionKey, string RowKey)
+        {
+            try
+            {
+                var table = GetConnectionTable();
+                var deleteOperation = TableOperation.Delete(
+                    new ConnectionEntity(PartitionKey, RowKey) { ETag = "*" });
+                table.Execute(deleteOperation);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
 
         private CloudTable GetConnectionTable()
         {
@@ -85,6 +134,6 @@ namespace testJsonDynamic.Azure
             return tableClient.GetTableReference("connection");
         }
 
-        public CloudStorageAccount storageAccount { get; set; }
+        public CloudStorageAccount storageAccount { get; set; }        
     }
 }
