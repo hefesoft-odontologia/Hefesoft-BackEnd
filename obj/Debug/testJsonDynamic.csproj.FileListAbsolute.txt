@@ -204,3 +204,4 @@ D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\System.Web.Http.WebHost.xml
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Microsoft.Web.Infrastructure.xml
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\System.Web.Optimization.xml
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Antlr3.Runtime.pdb
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Stripe.net.dll
