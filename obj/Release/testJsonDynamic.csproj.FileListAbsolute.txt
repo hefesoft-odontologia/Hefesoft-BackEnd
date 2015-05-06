@@ -158,3 +158,4 @@ D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Antlr3.Runtime.pdb
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\obj\Release\testJsonDynamic.dll
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\obj\Release\testJsonDynamic.pdb
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\obj\Release\testJsonDynamic.csprojResolveAssemblyReference.cache
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Stripe.net.dll
