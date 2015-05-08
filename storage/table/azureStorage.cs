@@ -341,12 +341,22 @@ namespace testJsonDynamic.storage
         {
             var tipo = entidad["type"].ToString();
             var id = entidad.SelectToken("data.object.id").ToString();
-            var date = entidad.SelectToken("data.object.date").ToString();
+
+            if (entidad.SelectToken("data.object.date").Any())
+            {
+                var date = entidad.SelectToken("data.object.date").ToString();
+                expando.RowKey = date;
+            }
+            else
+            {
+                var date = DateTime.Now.Ticks.ToString();
+            }
+
             var nombreWebHook = tipo.Split('.').Last().ToString().Replace(".", "").Replace("_", "").Replace("-", "");
             var nombreTabla = string.Format("{0}{1}", "stripe", nombreWebHook);
 
             expando.PartitionKey = id;
-            expando.RowKey = date;
+            
             expando.nombreTabla = nombreTabla;
 
             var blob = new testJsonDynamic.storage.blobStorage();

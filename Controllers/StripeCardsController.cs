@@ -31,10 +31,12 @@ namespace testJsonDynamic.Controllers
                 var item = RequestContext.Principal.Identity;
                 string value = await Request.Content.ReadAsStringAsync();
                 var entidad = System.Web.Helpers.Json.Decode(value);
+                var customer = entidad.customerId;
+                var card = entidad.cardId;
 
                 var cardService = new StripeCardService("sk_test_CBdkobSnlUEOyOjsLQ8fpqof");
-                var result = cardService.Delete(entidad.customeId, entidad.subscriptionId);
-                return result;
+                cardService.Delete(customer, card);
+                return "Eliminada";
             }
             catch (Exception ex)
             {

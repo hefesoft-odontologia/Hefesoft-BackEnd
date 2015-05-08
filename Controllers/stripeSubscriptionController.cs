@@ -19,9 +19,27 @@ namespace testJsonDynamic.Controllers
         }
 
         // GET: api/stripeSubscription/5
-        public string Get(int id)
+        public dynamic Get(string customer)
         {
-            return "value";
+            var hefesoftStripe = new StripSubscriptionHefesoft();
+            var customerService = new StripeCustomerService("sk_test_CBdkobSnlUEOyOjsLQ8fpqof");
+            StripeCustomer stripeCustomer = customerService.Get(customer);
+            hefesoftStripe.StripeCustomer = stripeCustomer;
+
+            foreach (var item in stripeCustomer.StripeSubscriptionList.StripeSubscriptions)
+            {
+                hefesoftStripe.FechaInicialString = item.PeriodStart.Value.ToShortDateString();
+                hefesoftStripe.FechaFinalString = item.PeriodEnd.Value.ToShortDateString();
+                
+                hefesoftStripe.FechaInicial = item.PeriodStart.Value.ToBinary();
+                hefesoftStripe.FechaFinal = item.PeriodEnd.Value.ToBinary();
+                
+                hefesoftStripe.FechaActual = DateTime.Now;
+                hefesoftStripe.FechaActualString = DateTime.Now.ToShortDateString();
+                hefesoftStripe.FechaActualLong = DateTime.Now.ToBinary();
+            }
+
+            return hefesoftStripe;
         }
 
         public async Task<dynamic> Post()
@@ -52,5 +70,26 @@ namespace testJsonDynamic.Controllers
         public void Delete(int id)
         {
         }
+    }
+
+    public class StripSubscriptionHefesoft
+    {
+        public StripeCustomer StripeCustomer { get; set; }
+        public long FechaInicial { get; set; }
+        public long FechaFinal { get; set; }
+
+        public StripSubscriptionHefesoft()
+        {
+            StripeCustomer = new StripeCustomer();
+        }
+
+        public string FechaInicialString { get; set; }
+
+        public string FechaFinalString { get; set; }
+
+        public string FechaActualString { get; set; }
+        public long FechaActualLong { get; set; }
+
+        public DateTime FechaActual { get; set; }
     }
 }
