@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using System.Web.Http;
 
 namespace testJsonDynamic.Controllers
-{
-    [System.Web.Http.Authorize]
+{   
     public class stripeController : ApiController
     {
         testJsonDynamic.storage.azureStorage _azure;
