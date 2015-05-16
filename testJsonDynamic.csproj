@@ -288,6 +288,7 @@
     <Compile Include="Controllers\tableGroupController.cs" />
     <Compile Include="Controllers\validateUser.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Entidades\SharedKeysList.cs" />
     <Compile Include="filters\MyAutentichationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
