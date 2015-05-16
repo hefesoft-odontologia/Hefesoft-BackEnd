@@ -415,7 +415,7 @@ namespace testJsonDynamic.storage
 
                 return result;
             }
-            catch { }
+            catch { return false;}
         }
      
     }
