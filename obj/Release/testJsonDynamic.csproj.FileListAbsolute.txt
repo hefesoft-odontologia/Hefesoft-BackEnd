@@ -255,3 +255,4 @@ D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\ko\System.Spatial.resources.d
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\ru\System.Spatial.resources.dll
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\zh-Hans\System.Spatial.resources.dll
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\lilianadouglas\Documents\GitHub\Hefesoft-BackEnd\bin\Microsoft.Practices.ServiceLocation.xml
