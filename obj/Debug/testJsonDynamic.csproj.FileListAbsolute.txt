@@ -300,4 +300,15 @@ D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\ko\System.Spatial.resources.d
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\ru\System.Spatial.resources.dll
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\zh-Hans\System.Spatial.resources.dll
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\zh-Hant\System.Spatial.resources.dll
-D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\obj\Debug\testJsonDynamic.csprojResolveAssemblyReference.cache
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Microsoft.Owin.Security.Google.dll
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Microsoft.Owin.Security.Google.xml
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\EntityFramework.dll
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\EntityFramework.SqlServer.dll
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\EntityFramework.xml
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\EntityFramework.SqlServer.xml
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Microsoft.AspNet.Identity.Owin.xml

@@ -8,6 +8,8 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using AccidentalFish.AspNet.Identity.Azure;
 using testJsonDynamic.Providers;
+using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.Facebook;
 
 
 namespace testJsonDynamic
@@ -15,8 +17,7 @@ namespace testJsonDynamic
     public partial class Startup
     {
         static Startup()
-        {
-           
+        {           
             PublicClientId = "self";
             var connectionString = "DefaultEndpointsProtocol=https;AccountName=hefesoftautentication;AccountKey=G943HAZgCsBqPwANE8tfKWaPq0FDM68gaUH4fCQz+W1NTGOBswZvQka1SFnquoYv+xrcPQQew7LQFcelJHycxw==";
             UserManagerFactory = () => new UserManager<TableUser>(new TableUserStore<TableUser>(connectionString));
@@ -31,11 +32,18 @@ namespace testJsonDynamic
             };
         }
 
+        public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
+    
+
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 
         public static Func<UserManager<TableUser>> UserManagerFactory { get; set; }
 
         public static string PublicClientId { get; private set; }
+
+        public static GoogleOAuth2AuthenticationOptions googleAuthOptions { get; private set; }
+        public static FacebookAuthenticationOptions facebookAuthOptions { get; private set; }
+
 
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
@@ -54,6 +62,24 @@ namespace testJsonDynamic
             {
                 Provider = new ApplicationOAuthBearerAuthenticationProvider(),
             });
+
+            //Configure Google External Login
+            googleAuthOptions = new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "505952414500-c04fnrdu3njem1cl2ug9h5gbd6rs025k",
+                ClientSecret = "xxxxxx",
+                Provider = new GoogleAuthProvider()
+            };
+            app.UseGoogleAuthentication(googleAuthOptions);
+
+            //Configure Facebook External Login
+            facebookAuthOptions = new FacebookAuthenticationOptions()
+            {
+                AppId = "xxxxxx",
+                AppSecret = "xxxxxx",
+                Provider = new FacebookAuthProvider()
+            };
+            app.UseFacebookAuthentication(facebookAuthOptions);
         }
     }
 }
