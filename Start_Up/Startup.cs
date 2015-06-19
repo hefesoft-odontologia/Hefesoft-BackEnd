@@ -4,6 +4,8 @@ using Microsoft.Owin;
 using Owin;
 using testJsonDynamic.Start_Up;
 using Microsoft.AspNet.SignalR;
+using System.Data.Entity;
+using testJsonDynamic.External;
 [assembly: OwinStartup(typeof(testJsonDynamic.Startup))]
 
 namespace testJsonDynamic
@@ -19,6 +21,8 @@ namespace testJsonDynamic
 
             //se usa para interceptar los llamados
             //app.Use(typeof(OwinMiddleWareQueryStringExtractor));
+
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AuthContext, AngularJSAuthentication.API.Migrations.Configuration>());
         }
     }
 }

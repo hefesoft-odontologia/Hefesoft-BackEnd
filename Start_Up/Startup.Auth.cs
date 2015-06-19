@@ -16,6 +16,15 @@ namespace testJsonDynamic
 {
     public partial class Startup
     {
+
+        public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
+        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
+        public static Func<UserManager<TableUser>> UserManagerFactory { get; set; }
+        public static string PublicClientId { get; private set; }
+        public static GoogleOAuth2AuthenticationOptions googleAuthOptions { get; private set; }
+        public static FacebookAuthenticationOptions facebookAuthOptions { get; private set; }
+
+
         static Startup()
         {           
             PublicClientId = "self";
@@ -26,38 +35,25 @@ namespace testJsonDynamic
             {
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId, UserManagerFactory),
-                AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
+                //AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 AllowInsecureHttp = true
             };
         }
 
-        public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
-    
-
-        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
-
-        public static Func<UserManager<TableUser>> UserManagerFactory { get; set; }
-
-        public static string PublicClientId { get; private set; }
-
-        public static GoogleOAuth2AuthenticationOptions googleAuthOptions { get; private set; }
-        public static FacebookAuthenticationOptions facebookAuthOptions { get; private set; }
-
+        
 
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
-            // Enable the application to use a cookie to store information for the signed in user
-            // and to use a cookie to temporarily store information about a user logging in with a third party login provider
-            //app.UseCookieAuthentication(new CookieAuthenticationOptions());
-            //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+            //use a cookie to temporarily store information about a user logging in with a third party login provider
+            app.UseExternalSignInCookie(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalCookie);
+            OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
 
-            // Enable the application to use bearer tokens to authenticate users
-            // app.UseOAuthBearerTokens(OAuthOptions);
-
+            // Token Generation
             app.UseOAuthAuthorizationServer(OAuthOptions);
-            
+            //app.UseOAuthBearerAuthentication(OAuthBearerOptions);
+
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
             {
                 Provider = new ApplicationOAuthBearerAuthenticationProvider(),
@@ -75,8 +71,8 @@ namespace testJsonDynamic
             //Configure Facebook External Login
             facebookAuthOptions = new FacebookAuthenticationOptions()
             {
-                AppId = "xxxxxx",
-                AppSecret = "xxxxxx",
+                AppId = "426977727468725",
+                AppSecret = "9f8e5ab3ee84e576cf08a34df1fc4c80",
                 Provider = new FacebookAuthProvider()
             };
             app.UseFacebookAuthentication(facebookAuthOptions);

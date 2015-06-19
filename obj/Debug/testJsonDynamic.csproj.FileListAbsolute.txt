@@ -312,3 +312,6 @@ D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\EntityFramework.xml
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\EntityFramework.SqlServer.xml
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\obj\Debug\testJsonDynamic.csprojResolveAssemblyReference.cache
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\obj\Debug\AngularJSAuthentication.API.Migrations.AddClientsAndRefreshTokenTables.resources
+D:\Hefesoft\Ionic\Odontologia\Hefesoft-BackEnd\obj\Debug\testJsonDynamic.csproj.GenerateResource.Cache

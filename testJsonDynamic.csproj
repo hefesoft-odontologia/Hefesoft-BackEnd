@@ -316,6 +316,11 @@
     <Compile Include="External\AuthRepository.cs" />
     <Compile Include="External\ChallengeResult.cs" />
     <Compile Include="External\Client.cs" />
+    <Compile Include="External\Migrations\201407121205456_AddClientsAndRefreshTokenTables.cs" />
+    <Compile Include="External\Migrations\201407121205456_AddClientsAndRefreshTokenTables.Designer.cs">
+      <DependentUpon>201407121205456_AddClientsAndRefreshTokenTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="External\Migrations\Configuration.cs" />
     <Compile Include="External\RefreshToken.cs" />
     <Compile Include="filters\MyAutentichationFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -407,7 +412,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="External\Migrations\201407121205456_AddClientsAndRefreshTokenTables.resx">
+      <DependentUpon>201407121205456_AddClientsAndRefreshTokenTables.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
