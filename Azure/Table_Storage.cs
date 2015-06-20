@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using testJsonDynamic.External;
 
 namespace testJsonDynamic.Azure
 {
@@ -95,6 +96,58 @@ namespace testJsonDynamic.Azure
             table.Execute(insertOperation);
         }
 
+        public Task insert(dynamic entidad)
+        {
+            var table = GetConnectionTable();
+            table.CreateIfNotExists();           
+            var insertOperation = TableOperation.InsertOrReplace(entidad);
+            return table.ExecuteAsync(insertOperation);            
+        }        
+
+        internal void deleteRefreshToken(RefreshToken refreshToken)
+        {
+            try
+            {
+                var table = GetConnectionTable();
+                var deleteOperation = TableOperation.Delete(
+                    new RefreshToken() { ETag = "*", Id = refreshToken.Id, ClientId = "refresh" });
+                table.Execute(deleteOperation);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public dynamic getRefreshToken(string id)
+        {
+            var result = new ConnectionResult();
+            var table = GetConnectionTable();
+
+            var query = new TableQuery<RefreshToken>()
+                .Where(TableQuery.GenerateFilterCondition(
+                "PartitionKey",
+                QueryComparisons.Equal,
+                id));
+
+            return table.ExecuteQuery(query).ToList();
+        }
+
+        public IEnumerable<RefreshToken> getRefreshTokenRowKey(string rowKey = "refresh")
+        {
+            var result = new ConnectionResult();
+            var table = GetConnectionTable();
+
+            var query = new TableQuery<RefreshToken>()
+                .Where(TableQuery.GenerateFilterCondition(
+                "RowKey",
+                QueryComparisons.Equal,
+                "refresh"));
+
+            return table.ExecuteQuery(query).ToList();
+        }
+
+
         public void delete(dynamic name, dynamic Context)
         {
             try
@@ -134,6 +187,8 @@ namespace testJsonDynamic.Azure
             return tableClient.GetTableReference("connection");
         }
 
-        public CloudStorageAccount storageAccount { get; set; }        
+        public CloudStorageAccount storageAccount { get; set; }
+
+       
     }
 }

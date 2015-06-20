@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace testJsonDynamic.External
 {
-    public class AuthContext : IdentityDbContext<IdentityUser>
+    public class AuthContext 
     {
-        public AuthContext()
-            : base("AuthContext")
+        public AuthContext()           
         {
 
         }

@@ -22,7 +22,7 @@ namespace testJsonDynamic
             //se usa para interceptar los llamados
             //app.Use(typeof(OwinMiddleWareQueryStringExtractor));
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AuthContext, AngularJSAuthentication.API.Migrations.Configuration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<AuthContext, AngularJSAuthentication.API.Migrations.Configuration>());
         }
     }
 }

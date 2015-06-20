@@ -16,6 +16,8 @@ using System.Web;
 using System.Web.Http;
 using testJsonDynamic.External;
 using testJsonDynamic.Models;
+using IdentityUser = AccidentalFish.AspNet.Identity.Azure.TableUser;
+using IdentityUserLogin = AccidentalFish.AspNet.Identity.Azure.TableUserLogin;
 
 
 namespace testJsonDynamic.Controllers
@@ -75,6 +77,10 @@ namespace testJsonDynamic.Controllers
                 return new ChallengeResult(provider, this);
             }
 
+            //UserManager<TableUser> userManager = testJsonDynamic.Startup.UserManagerFactory();
+            //TableUser user = await userManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
+
+
             IdentityUser user = await _repo.FindAsync(new UserLoginInfo(externalLogin.LoginProvider, externalLogin.ProviderKey));
 
             bool hasRegistered = user != null;
@@ -116,12 +122,13 @@ namespace testJsonDynamic.Controllers
                 return "client_Id is required";
             }
 
-            var client = _repo.FindClient(clientId);
+            //Esto es lo de validar que app va entrar npAuth etc...
+            //var client = _repo.FindClient(clientId);
 
-            if (client == null)
-            {
-                return string.Format("Client_id '{0}' is not registered in the system.", clientId);
-            }
+            //if (client == null)
+            //{
+            //    return string.Format("Client_id '{0}' is not registered in the system.", clientId);
+            //}
 
             //if (!string.Equals(client.AllowedOrigin, redirectUri.GetLeftPart(UriPartial.Authority), StringComparison.OrdinalIgnoreCase))
             //{
@@ -392,7 +399,5 @@ namespace testJsonDynamic.Controllers
             };
         }
     }
-
-
 
 }
