@@ -15,9 +15,7 @@ using Microsoft.Owin.Security.Facebook;
 namespace testJsonDynamic
 {
     public partial class Startup
-    {
-
-        public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
+    {   
         public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
         public static Func<UserManager<TableUser>> UserManagerFactory { get; set; }
         public static string PublicClientId { get; private set; }
@@ -35,6 +33,7 @@ namespace testJsonDynamic
             {
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId, UserManagerFactory),
+                //Para autenticacion con terceros se comentarea
                 //AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 AllowInsecureHttp = true
@@ -47,12 +46,10 @@ namespace testJsonDynamic
         public void ConfigureAuth(IAppBuilder app)
         {
             //use a cookie to temporarily store information about a user logging in with a third party login provider
-            app.UseExternalSignInCookie(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalCookie);
-            OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
+            app.UseExternalSignInCookie(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalCookie);           
 
             // Token Generation
-            app.UseOAuthAuthorizationServer(OAuthOptions);
-            //app.UseOAuthBearerAuthentication(OAuthBearerOptions);
+            app.UseOAuthAuthorizationServer(OAuthOptions);           
 
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
             {
@@ -62,8 +59,8 @@ namespace testJsonDynamic
             //Configure Google External Login
             googleAuthOptions = new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "505952414500-c04fnrdu3njem1cl2ug9h5gbd6rs025k",
-                ClientSecret = "xxxxxx",
+                ClientId = "505952414500-pv2455cqm2g1kiqc6c5okctpidefjin1.apps.googleusercontent.com",
+                ClientSecret = "2tsRLEoORWfb-iudS6KAuLEp",
                 Provider = new GoogleAuthProvider()
             };
             app.UseGoogleAuthentication(googleAuthOptions);
